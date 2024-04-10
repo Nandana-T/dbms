@@ -1,4 +1,4 @@
-PACKAGE
+--PACKAGE
 CREATE OR REPLACE PACKAGE BODY cust_sal AS
 PROCEDURE find_sal(c_id customers.id%TYPE) IS
 c_sal customers.salary%TYPE;

@@ -1,4 +1,4 @@
-This trigger execute BEFORE to convert ename field lowercase to uppercase.
+--This trigger execute BEFORE to convert ename field lowercase to uppercase.
 CREATE or REPLACE TRIGGER trg1
     BEFORE
     INSERT ON emp1
@@ -35,7 +35,7 @@ CREATE TABLE orders
   created_by varchar2(10)
 );
 
-1.Write PL/SQL program to execute a trigger before inserting a record into the orders table, to update the date when the insertion was done and the person who inserted the record.
+--Write PL/SQL program to execute a trigger before inserting a record into the orders table, to update the date when the insertion was done and the person who inserted the record.
 CREATE OR REPLACE TRIGGER orders_before_insert
 BEFORE INSERT
    ON orders
@@ -60,30 +60,30 @@ END;
 
 /
 
-2.Write PL/SQL program to execute a trigger before updating a record into the orders table, to update the date when the insertion was done and the person who inserted the record.
-3.CREATE OR REPLACE TRIGGER orders_before_update
-4.BEFORE UPDATE
-5.   ON orders
-6.   FOR EACH ROW
-7.
-8.DECLARE
-9.   v_username varchar2(10);
-10.
-11.BEGIN
-12.
-13.   -- Find username of person performing UPDATE on the table
-14.   SELECT user INTO v_username
-15.   FROM dual;
-16.
-17.   -- Update updated_date field to current system date
-18.   :new.updated_date := sysdate;
-19.
-20.   -- Update updated_by field to the username of the person performing the UPDATE
-21.   :new.updated_by := v_username;
-22.
-23.END;
-24./
-3. 
+--Write PL/SQL program to execute a trigger before updating a record into the orders table, to update the date when the insertion was done and the person who inserted the record.
+CREATE OR REPLACE TRIGGER orders_before_update
+BEFORE UPDATE
+   ON orders
+FOR EACH ROW
+
+DECLARE
+   v_username varchar2(10);
+
+BEGIN
+
+   -- Find username of person performing UPDATE on the table
+   SELECT user INTO v_username
+   FROM dual;
+
+   -- Update updated_date field to current system date
+   :new.updated_date := sysdate;
+
+   -- Update updated_by field to the username of the person performing the UPDATE
+   :new.updated_by := v_username;
+
+END;
+/
+ 
 Create a table orders. After inserting or updating into orders, create a new table   (orders_audit order_id,quantity,cost_per_item,total_cost,username) and insert the same values into the order-audit table along with the user who has inserted or updated the record.
 
 CREATE TABLE orders
